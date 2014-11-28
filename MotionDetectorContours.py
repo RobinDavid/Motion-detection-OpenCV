@@ -37,7 +37,7 @@ class MotionDetectorAdaptative():
         
     def initRecorder(self): #Create the recorder
         codec = cv.CV_FOURCC('M', 'J', 'P', 'G')
-        self.writer=cv.CreateVideoWriter(datetime.now().strftime("%b-%d_%H:%M:%S")+".wmv", codec, 5, cv.GetSize(self.frame), 1)
+        self.writer=cv.CreateVideoWriter(datetime.now().strftime("%b-%d_%H_%M_%S")+".wmv", codec, 5, cv.GetSize(self.frame), 1)
         #FPS set to 5 because it seems to be the fps of my cam but should be ajusted to your needs
         self.font = cv.InitFont(cv.CV_FONT_HERSHEY_SIMPLEX, 1, 1, 0, 2, 8) #Creates a font
 
