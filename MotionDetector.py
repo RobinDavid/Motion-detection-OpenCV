@@ -91,17 +91,12 @@ class MotionDetectorInstantaneous():
 
     def somethingHasMoved(self):
         nb=0 #Will hold the number of black pixels
-
-        for x in range(self.height): #Iterate the hole image
-            for y in range(self.width):
-                if self.res[x,y] == 0.0: #If the pixel is black keep it
-                    nb += 1
-        avg = (nb*100.0)/self.nb_pixels #Calculate the average of black pixel in the image
-
-        if avg > self.threshold:#If over the ceiling trigger the alarm
-            return True
+        min_threshold = (self.nb_pixels/100) * self.threshold #Number of pixels for current threshold
+        nb = self.nb_pixels - cv.CountNonZero(self.res)
+        if (nb) > min_threshold:
+           return True
         else:
-            return False
+           return False
         
 if __name__=="__main__":
     detect = MotionDetectorInstantaneous(doRecord=True)
